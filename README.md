@@ -5,7 +5,9 @@ A bot that can track how many people are on a Minecraft server / if the server i
 **Prefix:** `##`
 
 \[argument\] : required
+
 {argument} : optional
+
 **Commands:**
 - `help` : helps ya out!
 - `setup [ip] {port}` : sets up an McStatus for that server.
