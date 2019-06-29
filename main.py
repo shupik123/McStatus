@@ -88,6 +88,18 @@ async def mcstatusloop():
 		await asyncio.sleep(30)
 
 
+@client.command(pass_context = True)
+async def help(ctx):
+	embed=discord.Embed(title=" ", color=0x5edbff)
+	embed.set_author(name="McStatus Help")
+	embed.add_field(name="##help", value="I think you would know", inline=False)
+	embed.add_field(name="##setup [ip] \{port\}", value="Sets up an McStatus for that server", inline=False)
+	embed.add_field(name="##remove [ip] \{port\}", value="Removes the McStatus for that server", inline=False)
+	embed.add_field(name="##botstatus", value="Tells you what guilds the bot is in and how long it has been running", inline=False)
+	embed.add_field(name="##ping [ip] \{port\}", value="Gets the status of a Minecraft server", inline=False)
+	await ctx.send(embed=embed)
+
+
 
 @client.command(pass_context = True)
 async def botstatus(ctx):
@@ -107,6 +119,22 @@ async def botstatus(ctx):
 	
 	await ctx.send("{name} has been running for {hour} hr, {minute} min, {second} sec.".format(name=client.user.name, hour=hour, minute=minute, second=second))
 
+
+
+@client.command(pass_context = True)
+async def ping(ctx, ip, port=25565):
+	try:
+		server = MinecraftServer.lookup("{0}:{1}".format(ip,port))
+		status = server.status()
+		embed=discord.Embed(color=0x17ff28)
+		embed.add_field(name=t_ip(ip,port), value="Server Online ({0}/{1})".format(status.players.online,status.players.max), inline=False)
+		await ctx.send(embed=embed)
+	except:
+		embed=discord.Embed(color=0xff1717)
+		embed.add_field(name=t_ip(ip,port), value="Server Offline", inline=False)
+		await ctx.send(embed=embed)
+
+	
 
 
 @client.command(pass_context = True)
