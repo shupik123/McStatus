@@ -15,3 +15,4 @@ Invite can be found [here](https://discordapp.com/oauth2/authorize?client_id=587
 - `##setup [ip] {port}` : sets up an McStatus for that server.
 - `##remove [ip] {port}` : removes the McStatus for that server.
 - `##botstatus` : tells you what guilds the bot is in and how long it has been running.
+- `##ping [ip] {port}` : gets the status of a Minecraft server.
