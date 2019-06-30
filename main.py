@@ -18,7 +18,6 @@ except:
 		json.dump({}, f)
 		all_status = {}
 
-
 client = commands.Bot(command_prefix = "##")
 
 client.remove_command('help')
@@ -62,6 +61,14 @@ async def on_ready():
 	global starttime
 	starttime = time.time()
 
+	servers = []
+	for guild in all_status:
+		for ip in all_status[guild]:
+			servers.append(ip)
+	servers = list(set(servers))
+
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="{} Minecraft Servers".format(len(servers))))
+
 
 
 async def mcstatusloop():
@@ -70,6 +77,15 @@ async def mcstatusloop():
 
 	while True:
 		
+		servers = []
+		for guild in all_status:
+			for ip in all_status[guild]:
+				servers.append(ip)
+		servers = list(set(servers))
+
+		await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="{} Minecraft Servers".format(len(servers))))
+
+
 		for guild in all_status:
 			for full_ip in all_status[guild]:
 				
@@ -126,9 +142,14 @@ async def ping(ctx, ip, port=25565):
 	try:
 		server = MinecraftServer.lookup("{0}:{1}".format(ip,port))
 		status = server.status()
-		embed=discord.Embed(color=0x17ff28)
-		embed.add_field(name=t_ip(ip,port), value="Server Online ({0}/{1})".format(status.players.online,status.players.max), inline=False)
-		await ctx.send(embed=embed)
+		if status.players.online == status.players.max:
+			embed=discord.Embed(color=0xfffb00)
+			embed.add_field(name=t_ip(ip,port), value="Server Full ({0}/{1})".format(status.players.online,status.players.max), inline=False)
+			await ctx.send(embed=embed)
+		else:
+			embed=discord.Embed(color=0x17ff28)
+			embed.add_field(name=t_ip(ip,port), value="Server Online ({0}/{1})".format(status.players.online,status.players.max), inline=False)
+			await ctx.send(embed=embed)
 	except:
 		embed=discord.Embed(color=0xff1717)
 		embed.add_field(name=t_ip(ip,port), value="Server Offline", inline=False)
