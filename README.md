@@ -2,7 +2,7 @@
 
 A bot that can track how many people are on a Minecraft server / if the server is offline.
 
-Invite can be found [here](https://discordapp.com/oauth2/authorize?client_id=587030735278309376&scope=bot&permissions=8).
+Invite can be found [here](https://discordapp.com/oauth2/authorize?client_id=587030735278309376&scope=bot&permissions=2064).
 
 **Prefix:** `##`
 
