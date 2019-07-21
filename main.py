@@ -111,7 +111,7 @@ async def help(ctx):
 	embed.add_field(name="##help", value="I think you would know", inline=False)
 	embed.add_field(name="##setup [ip] \{port\}", value="Sets up an McStatus for that server", inline=False)
 	embed.add_field(name="##remove [ip] \{port\}", value="Removes the McStatus for that server", inline=False)
-	embed.add_field(name="##botstatus", value="Tells you what guilds the bot is in and how long it has been running", inline=False)
+	embed.add_field(name="##botstatus", value="Tells you how long it has been running", inline=False)
 	embed.add_field(name="##ping [ip] \{port\}", value="Gets the status of a Minecraft server", inline=False)
 	await ctx.send(embed=embed)
 
@@ -119,13 +119,6 @@ async def help(ctx):
 
 @client.command(pass_context = True)
 async def botstatus(ctx):
-	serverlist = "**Servers the bot is in:**```\n"
-	for server in client.guilds:
-		# gets the names of all the servers
-		serverlist = serverlist + "{a} owned by {b}\n".format(a=server.name,b=server.owner)
-	serverlist = serverlist + "```"
-	await ctx.send(serverlist)
-
 	# gets the current up time of the bot
 	global starttime
 	current_time = round(time.time() - starttime)
