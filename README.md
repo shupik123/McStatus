@@ -1,5 +1,8 @@
 # McStatus
 
+- **THIS PROJECT IS NO LONGER MAINTAINED**
+- **This was a more generalized Discord bot written with discord.py. There are no intentions to update this to be compatible with the current Discord API and Python library.**
+
 A bot that can track how many people are on a Minecraft server / if the server is offline.
 
 Invite can be found [here](https://discordapp.com/oauth2/authorize?client_id=587030735278309376&scope=bot&permissions=8).
